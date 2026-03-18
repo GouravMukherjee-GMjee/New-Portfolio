@@ -14,9 +14,9 @@ const cases = [
     solution: "Redesigned the task management system with a unified dashboard, reduced nav clicks from 6 to 2, and implemented an offline-first mobile experience.",
     image: "images/fieldequip-mockup.png",
     metrics: [
-      { label: "Efficiency", value: "+30%" },
-      { label: "App Rating", value: "4.6" },
-      { label: "Training Time", value: "-60%" }
+      { label: "Task Completion", value: "+25%" },
+      { label: "Process Time", value: "-30%" },
+      { label: "UI Defects", value: "↓ Pre-Release" }
     ]
   },
   {
@@ -29,9 +29,9 @@ const cases = [
     solution: "Restructured global navigation, redesigned assessment creation to a 3-step wizard, and built a fully responsive mobile-first experience.",
     image: "images/markerspro-mockup.png",
     metrics: [
+      { label: "Engagement", value: "+30%" },
       { label: "Bounce Rate", value: "-25%" },
-      { label: "Mobile Usage", value: "+40%" },
-      { label: "Completion", value: "+25%" }
+      { label: "UI Consistency", value: "↑ Cross-Platform" }
     ]
   }
 ];

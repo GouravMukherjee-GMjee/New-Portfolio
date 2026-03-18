@@ -4,6 +4,14 @@
 
 pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
 
+## Artifacts
+
+### `artifacts/portfolio` — Gourav Mukherjee UX Portfolio
+- React + Vite frontend-only portfolio site at `/`
+- Sections: Hero, About, Case Studies (FieldEquip FSM, MarkersPro EdTech), Skills, Design System, Experience Timeline, Contact/Footer
+- Dependencies: framer-motion, clsx, tailwind-merge, lucide-react
+- All data is hardcoded (no backend); contact: gouravmukherjee1907@gmail.com
+
 ## Stack
 
 - **Monorepo tool**: pnpm workspaces

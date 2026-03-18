@@ -6,20 +6,20 @@ const metrics = [
   {
     icon: <Zap className="w-6 h-6 text-primary" />,
     value: "↑30%",
-    label: "Task Efficiency",
-    context: "FieldEquip FSM Dashboard"
+    label: "User Engagement",
+    context: "MarkersPro EdTech Platform"
   },
   {
     icon: <Users className="w-6 h-6 text-primary" />,
     value: "↓25%",
     label: "Bounce Rate",
-    context: "MarkersPro Assessment Flow"
+    context: "MarkersPro Navigation Redesign"
   },
   {
     icon: <BarChart3 className="w-6 h-6 text-primary" />,
     value: "↑25%",
-    label: "Completion Rate",
-    context: "Enterprise UX Redesign"
+    label: "Task Completion",
+    context: "FieldEquip FSM Platform"
   }
 ];
 

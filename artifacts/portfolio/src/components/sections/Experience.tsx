@@ -3,25 +3,40 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 
 const experiences = [
   {
-    company: "Bursys Infotech",
+    company: "Bursys Infotech India Pvt. Ltd.",
     role: "Senior UX Designer",
-    period: "2022 - Present",
+    product: "FieldEquip (FSM SaaS Platform)",
+    period: "Feb 2024 – Present",
     bullets: [
-      "Led UX for FieldEquip FSM platform serving 250K+ daily active users.",
-      "Built and maintained a comprehensive design system with 80+ components in Figma.",
-      "Reduced critical user flow friction, moving from 8 steps to 3 steps for core tasks.",
-      "Mentored 2 junior designers and established standard operating procedures for the design team."
+      "Spearheaded end-to-end UX redesign of a Field Service Management SaaS platform (Web & Mobile), optimizing enterprise workflows across core modules.",
+      "Conducted user research, stakeholder workshops, usability testing, and heuristic evaluations to increase task completion rate by 25%.",
+      "Developed information architecture, user journeys, wireframes, and high-fidelity interactive prototypes in Figma, aligned with business KPIs.",
+      "Architected and maintained a scalable design system and reusable component library, improving UI consistency and accelerating development efficiency.",
+      "Simplified complex enterprise workflows (Work Orders, Asset Management, Inventory), reducing process completion time by 30%.",
+      "Improved usability and accessibility (WCAG standards), contributing to increased product adoption and user satisfaction."
     ]
   },
   {
-    company: "Wefivesoft",
-    role: "UI/UX Designer & Frontend Dev",
-    period: "2019 - 2022",
+    company: "Wefivesoft Pvt. Ltd.",
+    role: "Software Engineer & UI/UX Designer",
+    product: "MarkersPro (EdTech SaaS Platform)",
+    period: "Mar 2021 – Sep 2023",
     bullets: [
-      "Designed and prototyped MarkersPro EdTech platform (50K+ active users).",
-      "Implemented responsive designs directly into production using HTML/CSS and Tailwind.",
-      "Introduced a basic UI kit that reduced design inconsistencies across modules by 70%.",
-      "Led generative user research initiatives across 3 distinct product lines."
+      "Led end-to-end UI/UX design and front-end development in Agile/Scrum sprints for a cloud-based EdTech SaaS platform.",
+      "Improved user engagement by 30% and reduced bounce rate by 25% by restructuring information architecture and optimizing navigation flows.",
+      "Designed responsive, mobile-first, and accessible interfaces for web and mobile, following WCAG accessibility principles.",
+      "Conducted user research and developed personas, journey maps, user flows, wireframes, and high-fidelity prototypes aligned with product strategy.",
+      "Built and maintained a scalable design system ensuring cross-platform UI consistency and faster feature deployment.",
+      "Developed clean, maintainable front-end code using HTML5, CSS3, Bootstrap, and JavaScript."
+    ]
+  },
+  {
+    company: "Trident Academy of Technology",
+    role: "B.Tech — Computer Science",
+    product: "Bhubaneswar, Odisha",
+    period: "Aug 2020",
+    bullets: [
+      "Bachelor of Technology in Computer Science, providing a strong foundation in software engineering, UI fundamentals, and web technologies."
     ]
   }
 ];
@@ -67,7 +82,8 @@ export function Experience() {
                     </span>
                     
                     <h3 className="text-2xl font-serif font-medium text-foreground">{exp.role}</h3>
-                    <h4 className="text-lg text-muted-foreground mb-6">{exp.company}</h4>
+                    <h4 className="text-base font-semibold text-foreground/70 mb-1">{exp.company}</h4>
+                    <p className="text-sm text-primary font-medium mb-6">{exp.product}</p>
                     
                     <ul className="space-y-3">
                       {exp.bullets.map((bullet, i) => (
