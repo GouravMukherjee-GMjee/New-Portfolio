@@ -25,7 +25,7 @@ const skillCategories = [
 
 export function Skills() {
   return (
-    <section className="py-24 bg-background">
+    <section id="skills" className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
           {skillCategories.map((category, idx) => (
