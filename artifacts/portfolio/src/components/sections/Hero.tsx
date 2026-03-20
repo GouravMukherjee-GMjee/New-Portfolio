@@ -111,7 +111,7 @@ export function Hero() {
                   key={stat.label}
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 + i * 0.1, duration: 0.5 }}
+                  transition={{ delay: 0.2 + i * 0.08, duration: 0.4 }}
                   className="bg-card/80 backdrop-blur-sm border border-border rounded-2xl p-5 flex flex-col gap-3"
                 >
                   <div className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground">

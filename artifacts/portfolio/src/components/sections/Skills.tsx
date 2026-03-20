@@ -40,6 +40,7 @@ export function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.08 }}
+              className={idx === 3 ? "lg:col-start-1" : idx === 4 ? "lg:col-start-2" : ""}
             >
               <h3 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-6">
                 {category.title}

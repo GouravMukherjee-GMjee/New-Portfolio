@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { GitMerge, Menu, X } from "lucide-react";
+import { GitMerge, Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
 import { Button } from "@/components/ui/button";
 
@@ -15,6 +15,7 @@ const NAV_LINKS = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -25,6 +26,27 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Scroll spy — highlight the nav link for whichever section is in view
+  useEffect(() => {
+    const sectionIds = NAV_LINKS.map((l) => l.href.replace("#", ""));
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id);
+        },
+        { rootMargin: "-30% 0px -60% 0px", threshold: 0 }
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
   const scrollTo = (id: string) => {
     setIsMobileMenuOpen(false);
     const element = document.querySelector(id);
@@ -32,11 +54,12 @@ export function Navbar() {
       const offset = 80;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
+      const offsetPosition = elementRect - bodyRect - offset;
       window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
   };
+
+  const isDark = theme === "dark";
 
   return (
     <>
@@ -57,9 +80,7 @@ export function Navbar() {
               <GitMerge size={20} strokeWidth={2} />
             </div>
             <div className="flex flex-col items-start leading-none">
-              <span className="font-bold text-base tracking-tight text-foreground">
-                GMux
-              </span>
+              <span className="font-bold text-base tracking-tight text-foreground">GMux</span>
               <span className="text-[10px] font-medium text-muted-foreground tracking-wide mt-0.5">
                 Multi-Experience. One Identity.
               </span>
@@ -68,25 +89,42 @@ export function Navbar() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
-            <ul className="flex items-center gap-6 text-sm font-medium text-muted-foreground">
-              {NAV_LINKS.map((link) => (
-                <li key={link.label}>
-                  <button
-                    onClick={() => scrollTo(link.href)}
-                    className="hover:text-foreground transition-colors"
-                  >
-                    {link.label}
-                  </button>
-                </li>
-              ))}
+            <ul className="flex items-center gap-6 text-sm font-medium">
+              {NAV_LINKS.map((link) => {
+                const sectionId = link.href.replace("#", "");
+                const isActive = activeSection === sectionId;
+                return (
+                  <li key={link.label}>
+                    <button
+                      onClick={() => scrollTo(link.href)}
+                      className={`relative py-1 transition-colors ${
+                        isActive
+                          ? "text-foreground"
+                          : "text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      {link.label}
+                      {isActive && (
+                        <motion.span
+                          layoutId="nav-underline"
+                          className="absolute -bottom-0.5 left-0 right-0 h-px bg-foreground"
+                          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        />
+                      )}
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
+
             <div className="flex items-center gap-4 border-l border-border pl-6">
+              {/* Theme toggle — Sun / Moon */}
               <button
                 onClick={toggleTheme}
-                className="p-2 rounded-full hover:bg-muted transition-colors text-foreground"
-                aria-label="Toggle theme"
+                className="p-2 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"
+                aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
               >
-                <GitMerge size={18} />
+                {isDark ? <Sun size={17} /> : <Moon size={17} />}
               </button>
               <Button onClick={() => scrollTo("#contact")} className="rounded-full px-6">
                 Let's Talk
@@ -95,13 +133,13 @@ export function Navbar() {
           </nav>
 
           {/* Mobile Toggle */}
-          <div className="flex md:hidden items-center gap-4">
+          <div className="flex md:hidden items-center gap-3">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-muted transition-colors text-foreground"
-              aria-label="Toggle theme"
+              className="p-2 rounded-full hover:bg-muted transition-colors text-muted-foreground"
+              aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
             >
-              <GitMerge size={18} />
+              {isDark ? <Sun size={17} /> : <Moon size={17} />}
             </button>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -123,19 +161,26 @@ export function Navbar() {
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-30 bg-background/95 backdrop-blur-xl pt-24 px-6"
           >
-            <nav className="flex flex-col gap-6 text-2xl font-medium">
-              {NAV_LINKS.map((link) => (
-                <button
-                  key={link.label}
-                  onClick={() => scrollTo(link.href)}
-                  className="text-left py-4 border-b border-border text-foreground hover:text-primary"
-                >
-                  {link.label}
-                </button>
-              ))}
+            <nav className="flex flex-col gap-2 text-2xl font-medium">
+              {NAV_LINKS.map((link) => {
+                const sectionId = link.href.replace("#", "");
+                const isActive = activeSection === sectionId;
+                return (
+                  <button
+                    key={link.label}
+                    onClick={() => scrollTo(link.href)}
+                    className={`text-left py-4 border-b border-border transition-colors flex items-center justify-between ${
+                      isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {link.label}
+                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-foreground" />}
+                  </button>
+                );
+              })}
               <Button
                 size="lg"
-                className="mt-4 w-full rounded-xl text-lg h-14"
+                className="mt-6 w-full rounded-xl text-lg h-14"
                 onClick={() => scrollTo("#contact")}
               >
                 Let's Talk
