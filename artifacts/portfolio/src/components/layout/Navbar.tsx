@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { GitMerge, Menu, X } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
 import { Button } from "@/components/ui/button";
 
@@ -33,11 +32,7 @@ export function Navbar() {
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
       const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
   };
 
@@ -51,16 +46,22 @@ export function Navbar() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 flex items-center justify-between">
-          <button 
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="group flex items-center gap-2 outline-none"
+          {/* Logo */}
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="group flex items-center gap-3 outline-none"
           >
-            <div className="w-10 h-10 rounded-xl bg-foreground text-background flex items-center justify-center font-serif font-bold text-xl tracking-tighter group-hover:scale-105 transition-transform duration-300">
-              GM
+            <div className="w-10 h-10 rounded-xl bg-foreground text-background flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+              <GitMerge size={20} strokeWidth={2} />
             </div>
-            <span className="font-medium text-sm hidden md:block opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-              Gourav Mukherjee
-            </span>
+            <div className="flex flex-col items-start leading-none">
+              <span className="font-bold text-base tracking-tight text-foreground">
+                GMux
+              </span>
+              <span className="text-[10px] font-medium text-muted-foreground tracking-wide mt-0.5">
+                Multi-Experience. One Identity.
+              </span>
+            </div>
           </button>
 
           {/* Desktop Nav */}
@@ -81,9 +82,9 @@ export function Navbar() {
               <button
                 onClick={toggleTheme}
                 className="p-2 rounded-full hover:bg-muted transition-colors text-foreground"
-                aria-label="Toggle dark mode"
+                aria-label="Toggle theme"
               >
-                {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+                <GitMerge size={18} />
               </button>
               <Button onClick={() => scrollTo("#contact")} className="rounded-full px-6">
                 Let's Talk
@@ -96,8 +97,9 @@ export function Navbar() {
             <button
               onClick={toggleTheme}
               className="p-2 rounded-full hover:bg-muted transition-colors text-foreground"
+              aria-label="Toggle theme"
             >
-              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+              <GitMerge size={18} />
             </button>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -129,8 +131,8 @@ export function Navbar() {
                   {link.label}
                 </button>
               ))}
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="mt-4 w-full rounded-xl text-lg h-14"
                 onClick={() => scrollTo("#contact")}
               >
