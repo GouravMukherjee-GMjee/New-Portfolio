@@ -68,7 +68,7 @@ export function DesignProcess() {
                 >
                   {/* Icon node — sits on the connecting line */}
                   <div className="flex justify-center mb-6">
-                    <div className="w-14 h-14 rounded-2xl bg-card border-2 border-border flex items-center justify-center text-muted-foreground group-hover:border-foreground group-hover:text-foreground group-hover:bg-foreground group-hover:text-background transition-all duration-300 shadow-sm">
+                    <div className="w-14 h-14 rounded-2xl bg-card border-2 border-border flex items-center justify-center text-muted-foreground group-hover:border-foreground group-hover:bg-foreground group-hover:text-background transition-all duration-300 shadow-sm">
                       <Icon size={22} strokeWidth={1.6} />
                     </div>
                   </div>
