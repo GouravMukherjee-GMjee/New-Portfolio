@@ -27,7 +27,6 @@ export function Hero() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/70 to-background" />
       </div>
-
       <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
 
@@ -45,9 +44,7 @@ export function Hero() {
             </div>
 
             {/* Name + Role */}
-            <p className="text-base font-semibold tracking-widest uppercase text-muted-foreground mb-4">
-              Gourav Mukherjee · Senior UX Designer
-            </p>
+            <p className="text-base font-semibold tracking-widest uppercase text-muted-foreground mb-4">Gourav Mukherjee · UI/UX & Product Designer</p>
 
             {/* Headline */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-medium leading-[1.05] tracking-tight mb-6">
@@ -130,7 +127,6 @@ export function Hero() {
           </motion.div>
         </div>
       </div>
-
       {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
