@@ -167,21 +167,24 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — animated mouse icon */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.3, duration: 1 }}
-        className="absolute bottom-10 left-6 md:left-12 flex items-center gap-3 text-sm font-medium text-muted-foreground"
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.4, duration: 0.8 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        aria-hidden="true"
       >
-        <div className="w-[1px] h-12 bg-border relative overflow-hidden">
+        {/* Mouse outline */}
+        <div className="w-[22px] h-[34px] rounded-full border-2 border-foreground/25 flex justify-center pt-[5px]">
           <motion.div
-            className="absolute top-0 left-0 w-full h-1/2 bg-foreground"
-            animate={{ top: ["-50%", "100%"] }}
-            transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+            className="w-[3px] h-[6px] rounded-full bg-foreground/50"
+            animate={{ y: [0, 10, 0], opacity: [1, 0, 1] }}
+            transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
           />
         </div>
-        <span className="uppercase tracking-widest text-xs">Scroll to explore</span>
+        {/* Label */}
+        <span className="text-[9px] uppercase tracking-[0.22em] text-muted-foreground/60 font-medium">Scroll</span>
       </motion.div>
     </section>
   );
