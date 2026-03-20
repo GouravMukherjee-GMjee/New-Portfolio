@@ -3,6 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { CaseStudies } from "@/components/sections/CaseStudies";
+import { PersonalProjects } from "@/components/sections/PersonalProjects";
 import { DesignSystem } from "@/components/sections/DesignSystem";
 import { Experience } from "@/components/sections/Experience";
 import { Skills } from "@/components/sections/Skills";
@@ -17,6 +18,7 @@ export default function Home() {
         <Hero />
         <About />
         <CaseStudies />
+        <PersonalProjects />
         <DesignSystem />
         <Skills />
         <Experience />
@@ -33,7 +35,7 @@ export default function Home() {
             </p>
             <div className="flex justify-center">
               <a 
-                href="mailto:gourav.mukherjee@email.com"
+                href="mailto:gouravmukherjee1907@gmail.com"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 rounded-full font-medium text-lg transition-transform hover:-translate-y-1 shadow-lg shadow-primary/20 flex items-center gap-2"
               >
                 Get in touch
