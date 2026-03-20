@@ -127,26 +127,6 @@ export function Hero() {
                 </motion.div>
               ))}
             </div>
-
-            {/* Impact card */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.5 }}
-              className="bg-foreground text-background rounded-2xl p-6 flex items-center justify-between gap-6"
-            >
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-background/50 mb-1">Process Time Reduced</p>
-                <p className="text-4xl font-serif font-semibold">↓30%</p>
-                <p className="text-xs text-background/60 mt-1">FieldEquip FSM Workflows</p>
-              </div>
-              <div className="w-px h-12 bg-background/20 flex-shrink-0" />
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-background/50 mb-1">Engagement Up</p>
-                <p className="text-4xl font-serif font-semibold">↑30%</p>
-                <p className="text-xs text-background/60 mt-1">MarkersPro EdTech</p>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </div>
