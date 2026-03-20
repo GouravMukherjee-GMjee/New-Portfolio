@@ -49,15 +49,20 @@ export function Hero() {
               View Case Studies
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="w-full sm:w-auto rounded-full h-14 px-8 text-base bg-background/50 backdrop-blur-sm"
-              onClick={() => alert("Resume download would trigger here.")}
+            <a
+              href={`${import.meta.env.BASE_URL}Gourav_Mukherjee_Resume.pdf`}
+              download="Gourav_Mukherjee_Resume.pdf"
+              className="w-full sm:w-auto"
             >
-              <Download className="mr-2 w-4 h-4" />
-              Download Resume
-            </Button>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="w-full rounded-full h-14 px-8 text-base bg-background/50 backdrop-blur-sm"
+              >
+                <Download className="mr-2 w-4 h-4" />
+                Download Resume
+              </Button>
+            </a>
           </div>
         </motion.div>
       </div>
