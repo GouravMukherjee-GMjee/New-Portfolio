@@ -52,10 +52,13 @@ export function About() {
               className="space-y-4 text-muted-foreground text-base md:text-[1.05rem] leading-relaxed"
             >
               <p>
-                I'm a product designer who thrives at the intersection of complex system requirements and human needs. Over 5+ years, I've specialised in untangling dense enterprise workflows — turning them into experiences that genuinely save people time.
+                I'm a designer who loves turning complex ideas into simple, user-friendly experiences. I enjoy working on products that solve real problems — whether it's helping users find jobs, manage healthcare, or track their daily activities.
               </p>
               <p>
-                My process isn't just about aesthetics — it's about measurable outcomes. I rely on user research, data analytics, and iterative prototyping to validate every decision before it reaches a developer's desk.
+                I believe good design is not just about how things look, but how they work. That's why I focus on usability, clarity, and meaningful interactions in every project I build.
+              </p>
+              <p>
+                When I'm not designing, I'm exploring new trends, improving my skills, and experimenting with modern tools to stay ahead in the design space.
               </p>
             </motion.div>
 
