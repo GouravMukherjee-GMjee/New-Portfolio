@@ -27,16 +27,16 @@ const coreSkills = [
 ];
 
 const tools = [
-  { name: "Figma",       abbr: "Fi",  bg: "bg-[#7B61FF]",   type: "Primary"   },
-  { name: "Adobe XD",   abbr: "XD",  bg: "bg-[#FF61F6]",   type: "Primary"   },
-  { name: "Photoshop",  abbr: "Ps",  bg: "bg-[#31A8FF]",   type: "Primary"   },
-  { name: "Illustrator",abbr: "Ai",  bg: "bg-[#FF9A00]",   type: "Primary"   },
-  { name: "Sketch",     abbr: "Sk",  bg: "bg-[#F7B500]",   type: "Secondary" },
-  { name: "Miro",       abbr: "Mi",  bg: "bg-[#050038]",   type: "Primary"   },
-  { name: "Balsamiq",   abbr: "Bq",  bg: "bg-[#CC3333]",   type: "Secondary" },
-  { name: "Notion",     abbr: "No",  bg: "bg-[#191919]",   type: "Primary"   },
-  { name: "Jira",       abbr: "Ji",  bg: "bg-[#0052CC]",   type: "Primary"   },
-  { name: "Maze",       abbr: "Mz",  bg: "bg-[#7B5EA7]",   type: "Secondary" },
+  { name: "Figma",        slug: "figma",             bg: "#1E1E1E", type: "Primary"   },
+  { name: "Adobe XD",     slug: "adobexd",           bg: "#470137", type: "Primary"   },
+  { name: "Photoshop",    slug: "adobephotoshop",    bg: "#001D34", type: "Primary"   },
+  { name: "Illustrator",  slug: "adobeillustrator",  bg: "#FF9A00", type: "Primary"   },
+  { name: "Sketch",       slug: "sketch",            bg: "#C37E00", type: "Secondary" },
+  { name: "Miro",         slug: "miro",              bg: "#050038", type: "Primary"   },
+  { name: "Balsamiq",     slug: "balsamiq",          bg: "#CC3333", type: "Secondary" },
+  { name: "Notion",       slug: "notion",            bg: "#191919", type: "Primary"   },
+  { name: "Jira",         slug: "jira",              bg: "#0052CC", type: "Primary"   },
+  { name: "Maze",         slug: "maze",              bg: "#6E41E2", type: "Secondary" },
 ];
 
 const code = [
@@ -127,9 +127,19 @@ export function Skills() {
                   transition={{ delay: 0.15 + i * 0.04 }}
                   className="group flex flex-col items-center gap-2"
                 >
-                  {/* Colored icon badge */}
-                  <div className={`w-11 h-11 rounded-xl ${tool.bg} flex items-center justify-center shadow-sm group-hover:scale-110 group-hover:shadow-md transition-all duration-200`}>
-                    <span className="text-white text-[11px] font-black tracking-tight">{tool.abbr}</span>
+                  {/* Brand-colored icon tile with real logo */}
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center shadow-sm group-hover:scale-110 group-hover:shadow-md transition-all duration-200"
+                    style={{ backgroundColor: tool.bg }}
+                  >
+                    <img
+                      src={`https://cdn.simpleicons.org/${tool.slug}/ffffff`}
+                      alt={tool.name}
+                      width={22}
+                      height={22}
+                      className="w-[22px] h-[22px] object-contain"
+                      draggable={false}
+                    />
                   </div>
                   {/* Name */}
                   <span className="text-[10px] font-medium text-muted-foreground text-center leading-tight group-hover:text-foreground transition-colors">
