@@ -51,55 +51,26 @@ export function About() {
           </div>
           
           <div className="lg:col-span-6 lg:col-start-7">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-4">
-                <motion.div 
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {metrics.map((metric, i) => (
+                <motion.div
+                  key={metric.label}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="bg-card border border-border p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow"
+                  transition={{ delay: i * 0.1 }}
+                  className="bg-card border border-border p-6 rounded-3xl shadow-sm hover:shadow-md transition-shadow flex flex-col gap-4"
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center mb-6">
-                    {metrics[0].icon}
+                  <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center">
+                    {metric.icon}
                   </div>
-                  <h3 className="text-4xl font-serif mb-2">{metrics[0].value}</h3>
-                  <p className="font-medium text-foreground">{metrics[0].label}</p>
-                  <p className="text-sm text-muted-foreground mt-1">{metrics[0].context}</p>
-                </motion.div>
-                
-              </div>
-
-              <div className="space-y-4 sm:mt-12">
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 }}
-                  className="bg-card border border-border p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center mb-6">
-                    {metrics[1].icon}
+                  <div>
+                    <h3 className="text-3xl font-serif mb-1">{metric.value}</h3>
+                    <p className="font-medium text-foreground text-sm">{metric.label}</p>
+                    <p className="text-xs text-muted-foreground mt-1 leading-snug">{metric.context}</p>
                   </div>
-                  <h3 className="text-4xl font-serif mb-2">{metrics[1].value}</h3>
-                  <p className="font-medium text-foreground">{metrics[1].label}</p>
-                  <p className="text-sm text-muted-foreground mt-1">{metrics[1].context}</p>
                 </motion.div>
-
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                  className="bg-card border border-border p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center mb-6">
-                    {metrics[2].icon}
-                  </div>
-                  <h3 className="text-4xl font-serif mb-2">{metrics[2].value}</h3>
-                  <p className="font-medium text-foreground">{metrics[2].label}</p>
-                  <p className="text-sm text-muted-foreground mt-1">{metrics[2].context}</p>
-                </motion.div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
