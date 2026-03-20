@@ -50,54 +50,70 @@
 }
 
 :root {
-  --button-outline: rgba(0,0,0, .10);
-  --badge-outline: rgba(0,0,0, .05);
+  --button-outline: rgba(0,0,0, .12);
+  --badge-outline: rgba(0,0,0, .06);
   --opaque-button-border-intensity: -8;
-  --elevate-1: rgba(0,0,0, .03);
-  --elevate-2: rgba(0,0,0, .08);
+  --elevate-1: rgba(0,0,0, .04);
+  --elevate-2: rgba(0,0,0, .09);
 
-  /* Premium Light Theme */
-  --background: 0 0% 98%;
-  --foreground: 240 10% 12%;
-  
+  /* ── Enhanced Premium Light Theme ──────────────────────────────────
+     Key principles:
+     • Background has a very slight cool tint — not pure white/gray
+     • Card is pure white — clearly pops against the tinted background
+     • Borders are properly visible (not near-invisible at 90%)
+     • Foreground text is deep near-black for strong contrast
+     • Muted text is darker so hierarchy reads confidently
+  ────────────────────────────────────────────────────────────────── */
+
+  /* Page background — subtle cool blue-gray tint */
+  --background: 220 30% 96%;
+  /* Main text — deep near-black with a slight cool hue */
+  --foreground: 220 25% 7%;
+
+  /* Cards — pure white, clearly distinct from bg */
   --card: 0 0% 100%;
-  --card-foreground: 240 10% 12%;
-  --card-border: 240 5% 90%;
-  
+  --card-foreground: 220 25% 7%;
+  --card-border: 220 15% 86%;
+
   --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 12%;
-  --popover-border: 240 5% 90%;
-  
-  --primary: 240 5.9% 10%;
-  --primary-foreground: 0 0% 98%;
-  
-  --secondary: 240 4.8% 95.9%;
-  --secondary-foreground: 240 5.9% 10%;
-  
-  --muted: 240 4.8% 93%;
-  --muted-foreground: 240 3.8% 46.1%;
-  
-  --accent: 240 4.8% 90%;
-  --accent-foreground: 240 5.9% 10%;
-  
+  --popover-foreground: 220 25% 7%;
+  --popover-border: 220 15% 86%;
+
+  /* Primary action — near-black */
+  --primary: 220 25% 7%;
+  --primary-foreground: 0 0% 99%;
+
+  /* Secondary surface — tinted, clearly distinguishable from card */
+  --secondary: 220 20% 93%;
+  --secondary-foreground: 220 25% 7%;
+
+  /* Muted surface and text */
+  --muted: 220 18% 91%;
+  --muted-foreground: 220 10% 38%;
+
+  /* Accent */
+  --accent: 220 18% 90%;
+  --accent-foreground: 220 25% 7%;
+
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
-  
-  --border: 240 5.9% 90%;
-  --input: 240 5.9% 90%;
-  --ring: 240 5.9% 10%;
-  
+
+  /* Borders — visible but not harsh */
+  --border: 220 15% 84%;
+  --input: 220 15% 84%;
+  --ring: 220 25% 7%;
+
   --radius: 0.75rem;
 
-  --sidebar: 0 0% 98%;
-  --sidebar-foreground: 240 5.3% 26.1%;
-  --sidebar-border: 240 5.9% 90%;
-  --sidebar-primary: 240 5.9% 10%;
+  --sidebar: 220 30% 96%;
+  --sidebar-foreground: 220 15% 26%;
+  --sidebar-border: 220 15% 84%;
+  --sidebar-primary: 220 25% 7%;
   --sidebar-primary-foreground: 0 0% 98%;
-  --sidebar-accent: 240 4.8% 95.9%;
-  --sidebar-accent-foreground: 240 5.9% 10%;
+  --sidebar-accent: 220 20% 93%;
+  --sidebar-accent-foreground: 220 25% 7%;
   --sidebar-ring: 217.2 91.2% 59.8%;
-  
+
   --chart-1: 12 76% 61%;
   --chart-2: 173 58% 39%;
   --chart-3: 197 37% 24%;
@@ -112,37 +128,37 @@
   --elevate-1: rgba(255,255,255, .04);
   --elevate-2: rgba(255,255,255, .09);
 
-  /* Premium Dark Theme */
+  /* Premium Dark Theme — unchanged */
   --background: 240 10% 4%;
   --foreground: 0 0% 95%;
-  
+
   --card: 240 10% 6%;
   --card-foreground: 0 0% 95%;
   --card-border: 240 5% 15%;
-  
+
   --popover: 240 10% 6%;
   --popover-foreground: 0 0% 95%;
   --popover-border: 240 5% 15%;
-  
+
   --primary: 0 0% 98%;
   --primary-foreground: 240 5.9% 10%;
-  
+
   --secondary: 240 5% 15%;
   --secondary-foreground: 0 0% 98%;
-  
+
   --muted: 240 5% 12%;
   --muted-foreground: 240 5% 64.9%;
-  
+
   --accent: 240 5% 15%;
   --accent-foreground: 0 0% 98%;
-  
+
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
-  
+
   --border: 240 5% 15%;
   --input: 240 5% 15%;
   --ring: 240 4.9% 83.9%;
-  
+
   --sidebar: 240 10% 4%;
   --sidebar-foreground: 240 4.8% 95.9%;
   --sidebar-border: 240 5% 15%;
@@ -172,6 +188,23 @@
   }
 }
 
+/* ── Light-mode card depth ──────────────────────────────────────────
+   Cards are pure white on a tinted background — a subtle shadow gives
+   them the lift that dark mode achieves through contrast alone.
+────────────────────────────────────────────────────────────────── */
+:root:not(.dark) .bg-card {
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* ── Light-mode section background contrast ─────────────────────────
+   Sections that use bg-secondary/30 get a touch more presence.
+────────────────────────────────────────────────────────────────── */
+:root:not(.dark) .border-border\/50 {
+  border-color: hsl(220 15% 82% / 0.8);
+}
+
 /* Subtle grain texture overlay for a premium print feel */
 .grain-overlay {
   position: fixed;
@@ -181,7 +214,7 @@
   height: 100vh;
   pointer-events: none;
   z-index: 50;
-  opacity: 0.03;
+  opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
