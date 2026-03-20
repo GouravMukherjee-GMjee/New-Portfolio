@@ -36,10 +36,8 @@ export function Footer() {
     >
       {/* ── Subtle top accent line ── */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-
       {/* ── Decorative background orb ── */}
       <div className="absolute bottom-0 right-0 w-[500px] h-[400px] rounded-full bg-white/[0.02] blur-[120px] pointer-events-none" />
-
       <div className="relative max-w-6xl mx-auto px-6 md:px-10 lg:px-16 pt-16 pb-10">
 
         {/* ── Main grid ── */}
@@ -63,7 +61,7 @@ export function Footer() {
               <h3 className="text-white text-xl font-serif font-medium leading-snug">
                 Gourav Mukherjee
               </h3>
-              <p className="text-white/50 text-sm mt-1">Senior UI/UX & Product Designer</p>
+              <p className="text-white/50 text-sm mt-1">UI/UX & Product Designer</p>
             </div>
 
             {/* Availability */}
