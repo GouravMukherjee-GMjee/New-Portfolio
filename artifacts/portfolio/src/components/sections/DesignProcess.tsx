@@ -51,8 +51,8 @@ export function DesignProcess() {
 
         {/* ── Desktop: horizontal steps row ── */}
         <div className="hidden lg:block relative">
-          {/* Connecting line behind the cards */}
-          <div className="absolute top-[3.25rem] left-[calc(10%+1.75rem)] right-[calc(10%+1.75rem)] h-px bg-border z-0" />
+          {/* Connecting line — vertically centred through the icon nodes */}
+          <div className="absolute top-7 left-[10%] right-[10%] h-px bg-border z-0" />
 
           <div className="grid grid-cols-5 gap-4 relative z-10">
             {steps.map((step, i) => {
