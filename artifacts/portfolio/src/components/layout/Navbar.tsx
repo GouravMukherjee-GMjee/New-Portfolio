@@ -126,8 +126,8 @@ export function Navbar() {
               >
                 {isDark ? <Sun size={17} /> : <Moon size={17} />}
               </button>
-              <Button onClick={() => scrollTo("#contact")} className="rounded-full px-6">
-                Let's Talk
+              <Button asChild className="rounded-full px-6">
+                <a href="mailto:gouravmukherjee1907@gmail.com">Let's Talk</a>
               </Button>
             </div>
           </nav>
@@ -178,12 +178,8 @@ export function Navbar() {
                   </button>
                 );
               })}
-              <Button
-                size="lg"
-                className="mt-6 w-full rounded-xl text-lg h-14"
-                onClick={() => scrollTo("#contact")}
-              >
-                Let's Talk
+              <Button asChild size="lg" className="mt-6 w-full rounded-xl text-lg h-14">
+                <a href="mailto:gouravmukherjee1907@gmail.com">Let's Talk</a>
               </Button>
             </nav>
           </motion.div>
