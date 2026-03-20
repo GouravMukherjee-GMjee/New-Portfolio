@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, BarChart3, Users, Zap } from "lucide-react";
+import { BarChart3, Users, Zap } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
 const metrics = [
@@ -67,21 +67,6 @@ export function About() {
                   <p className="text-sm text-muted-foreground mt-1">{metrics[0].context}</p>
                 </motion.div>
                 
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                  className="bg-primary text-primary-foreground p-8 rounded-3xl shadow-lg relative overflow-hidden"
-                >
-                  <div className="relative z-10">
-                    <h3 className="text-2xl font-serif mb-4 leading-snug">"Gourav has a rare ability to translate complex business rules into simple interfaces."</h3>
-                    <p className="text-primary-foreground/70 text-sm">— Product Manager, FieldEquip</p>
-                  </div>
-                  <div className="absolute -bottom-10 -right-10 opacity-10">
-                    <ArrowUpRight size={120} />
-                  </div>
-                </motion.div>
               </div>
 
               <div className="space-y-4 sm:mt-12">
