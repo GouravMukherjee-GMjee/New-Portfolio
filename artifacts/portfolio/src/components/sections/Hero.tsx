@@ -3,13 +3,19 @@ import { ArrowRight, Download, Briefcase, Clock, FolderOpen, LayoutGrid } from "
 import { Button } from "@/components/ui/button";
 
 const stats = [
-  { icon: <Clock size={16} />, value: "5+", label: "Years Experience" },
-  { icon: <Briefcase size={16} />, value: "2", label: "Companies" },
-  { icon: <FolderOpen size={16} />, value: "7+", label: "Products Shipped" },
-  { icon: <LayoutGrid size={16} />, value: "3+", label: "Design Systems" },
+  { icon: <Clock size={18} />, value: "5+", label: "Years Experience" },
+  { icon: <Briefcase size={18} />, value: "2", label: "Companies" },
+  { icon: <FolderOpen size={18} />, value: "7+", label: "Products Shipped" },
+  { icon: <LayoutGrid size={18} />, value: "3+", label: "Design Systems" },
 ];
 
 const specializations = ["SaaS Platforms", "Enterprise UX", "FSM", "EdTech"];
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] },
+});
 
 export function Hero() {
   const scrollToWork = () => {
@@ -18,60 +24,78 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
-      {/* Background */}
+      {/* Background image */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
           src={`${import.meta.env.BASE_URL}images/hero-bg.png`}
           alt=""
-          className="w-full h-full object-cover opacity-30 dark:opacity-15"
+          className="w-full h-full object-cover opacity-25 dark:opacity-10"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/70 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/60 to-background" />
       </div>
+
+      {/* Decorative gradient orbs */}
+      <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-primary/4 blur-3xl pointer-events-none z-0" />
+      <div className="absolute bottom-1/3 left-1/3 w-[300px] h-[300px] rounded-full bg-primary/3 blur-3xl pointer-events-none z-0" />
+
       <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
 
-          {/* Left — Text */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7"
-          >
+          {/* Left — Text (each block animates independently) */}
+          <div className="lg:col-span-7">
             {/* Availability badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground border border-border/50 text-sm font-medium mb-6">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              Available for Opportunities
-            </div>
+            <motion.div {...fadeUp(0)}>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground border border-border/50 text-sm font-medium mb-6">
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                Available for Opportunities
+              </div>
+            </motion.div>
 
             {/* Name + Role */}
-            <p className="text-base font-semibold tracking-widest uppercase text-muted-foreground mb-4">Gourav Mukherjee · Senior UI/UX & Product Designer</p>
+            <motion.p {...fadeUp(0.1)} className="text-sm font-semibold tracking-[0.2em] uppercase text-muted-foreground mb-5">
+              Gourav Mukherjee &nbsp;·&nbsp; Senior UI/UX &amp; Product Designer
+            </motion.p>
 
             {/* Headline */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-medium leading-[1.05] tracking-tight mb-6">
+            <motion.h1
+              {...fadeUp(0.2)}
+              className="text-5xl md:text-6xl lg:text-[5.25rem] font-serif font-medium leading-[1.04] tracking-tight mb-7"
+            >
               Designing{" "}
-              <span className="text-muted-foreground italic">Scalable UX</span>{" "}
-              <br className="hidden sm:block" />
-              for Complex Products.
-            </h1>
+              <em className="not-italic text-muted-foreground">Scalable UX</em>
+              <br />
+              for Complex{" "}
+              <span className="relative inline-block">
+                Products.
+                <motion.span
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 0.9, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ transformOrigin: "left" }}
+                  className="absolute -bottom-1 left-0 right-0 h-[3px] bg-foreground/20 rounded-full"
+                />
+              </span>
+            </motion.h1>
 
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl mb-8">
+            {/* Description */}
+            <motion.p {...fadeUp(0.3)} className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-lg mb-8">
               Specializing in enterprise SaaS, Field Service Management, and EdTech — from user research and information architecture to pixel-perfect, accessible interfaces.
-            </p>
+            </motion.p>
 
             {/* Specialization pills */}
-            <div className="flex flex-wrap gap-2 mb-10">
+            <motion.div {...fadeUp(0.4)} className="flex flex-wrap gap-2 mb-10">
               {specializations.map((s) => (
                 <span
                   key={s}
-                  className="px-3 py-1 text-xs font-semibold uppercase tracking-wider bg-secondary border border-border/60 rounded-full text-muted-foreground"
+                  className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider bg-secondary border border-border/60 rounded-full text-muted-foreground"
                 >
                   {s}
                 </span>
               ))}
-            </div>
+            </motion.div>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-center gap-4">
+            <motion.div {...fadeUp(0.5)} className="flex flex-col sm:flex-row items-center gap-4">
               <Button
                 size="lg"
                 className="w-full sm:w-auto rounded-full h-14 px-8 text-base group"
@@ -94,44 +118,60 @@ export function Hero() {
                   Download Resume
                 </Button>
               </a>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
-          {/* Right — Stats card */}
+          {/* Right — Stats grid */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 hidden lg:flex flex-col gap-4"
           >
-            {/* Stats grid */}
             <div className="grid grid-cols-2 gap-3">
               {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
-                  initial={{ opacity: 0, y: 16 }}
+                  initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 + i * 0.08, duration: 0.4 }}
-                  className="bg-card/80 backdrop-blur-sm border border-border rounded-2xl p-5 flex flex-col gap-3"
+                  transition={{ delay: 0.25 + i * 0.09, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  className="group relative bg-card/80 backdrop-blur-sm border border-border rounded-2xl p-5 flex flex-col gap-4 overflow-hidden hover:border-border/80 hover:shadow-sm transition-all duration-300"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground">
+                  {/* Thin accent top border */}
+                  <div className="absolute top-0 left-4 right-4 h-[2px] bg-gradient-to-r from-transparent via-foreground/20 to-transparent rounded-full" />
+
+                  <div className="w-9 h-9 rounded-xl bg-secondary flex items-center justify-center text-muted-foreground group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
                     {stat.icon}
                   </div>
                   <div>
-                    <div className="text-3xl font-serif font-semibold text-foreground">{stat.value}</div>
-                    <div className="text-xs text-muted-foreground font-medium mt-0.5">{stat.label}</div>
+                    <div className="text-4xl font-serif font-semibold text-foreground leading-none">{stat.value}</div>
+                    <div className="text-xs text-muted-foreground font-medium mt-1.5 tracking-wide">{stat.label}</div>
                   </div>
                 </motion.div>
               ))}
             </div>
+
+            {/* "Currently at" context tag */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.5 }}
+              className="flex items-center gap-3 px-4 py-3 bg-card/60 border border-border/50 rounded-xl"
+            >
+              <span className="w-2 h-2 rounded-full bg-green-500 flex-shrink-0 animate-pulse" />
+              <span className="text-sm text-muted-foreground">
+                Open to full-time &amp; freelance roles in product design
+              </span>
+            </motion.div>
           </motion.div>
         </div>
       </div>
+
       {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 1 }}
+        transition={{ delay: 1.3, duration: 1 }}
         className="absolute bottom-10 left-6 md:left-12 flex items-center gap-3 text-sm font-medium text-muted-foreground"
       >
         <div className="w-[1px] h-12 bg-border relative overflow-hidden">
