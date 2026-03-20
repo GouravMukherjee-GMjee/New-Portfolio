@@ -18,10 +18,10 @@ export default function Home() {
       <main>
         <Hero />
         <About />
-        <DesignProcess />
         <CaseStudies />
         <PersonalProjects />
         <DesignSystem />
+        <DesignProcess />
         <Skills />
         <Experience />
         

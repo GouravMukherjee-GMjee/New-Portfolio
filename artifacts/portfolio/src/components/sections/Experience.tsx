@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { GraduationCap } from "lucide-react";
+import { GraduationCap, Briefcase } from "lucide-react";
 
 const experiences = [
   {
@@ -9,14 +9,14 @@ const experiences = [
     role: "Senior UX Designer",
     product: "FieldEquip — FSM SaaS Platform",
     period: "Feb 2024 – Present",
+    current: true,
     bullets: [
       "Spearheaded end-to-end UX redesign of a Field Service Management SaaS platform (Web & Mobile), optimising enterprise workflows across core modules.",
       "Conducted user research, stakeholder workshops, usability testing, and heuristic evaluations — increasing task completion rate by 25%.",
-      "Developed information architecture, user journeys, wireframes, and high-fidelity prototypes in Figma, aligned with business KPIs.",
+      "Developed information architecture, user journeys, wireframes, and hi-fi prototypes in Figma, aligned with business KPIs.",
       "Architected and maintained a scalable design system and reusable component library, improving UI consistency and accelerating development.",
       "Simplified complex enterprise workflows (Work Orders, Asset Management, Inventory), reducing process completion time by 30%.",
-      "Improved usability and accessibility (WCAG standards), contributing to increased product adoption and user satisfaction."
-    ]
+    ],
   },
   {
     type: "work" as const,
@@ -24,14 +24,14 @@ const experiences = [
     role: "Software Engineer & UI/UX Designer",
     product: "MarkersPro — EdTech SaaS Platform",
     period: "Mar 2021 – Sep 2023",
+    current: false,
     bullets: [
       "Led end-to-end UI/UX design and front-end development in Agile/Scrum sprints for a cloud-based EdTech SaaS platform.",
-      "Improved user engagement by 30% and reduced bounce rate by 25% by restructuring information architecture and optimising navigation flows.",
+      "Improved user engagement by 30% and reduced bounce rate by 25% by restructuring information architecture and navigation flows.",
       "Designed responsive, mobile-first, accessible interfaces for web and mobile following WCAG principles.",
-      "Conducted user research and developed personas, journey maps, user flows, wireframes, and high-fidelity prototypes.",
       "Built and maintained a scalable design system ensuring cross-platform UI consistency and faster feature deployment.",
-      "Developed clean, maintainable front-end code using HTML5, CSS3, Bootstrap, and JavaScript."
-    ]
+      "Developed clean front-end code using HTML5, CSS3, Bootstrap, and JavaScript.",
+    ],
   },
   {
     type: "education" as const,
@@ -39,10 +39,11 @@ const experiences = [
     role: "B.Tech — Computer Science",
     product: "Bhubaneswar, Odisha",
     period: "Graduated Aug 2020",
+    current: false,
     bullets: [
-      "Bachelor of Technology in Computer Science — strong foundation in software engineering, UI fundamentals, and web technologies."
-    ]
-  }
+      "Bachelor of Technology in Computer Science — strong foundation in software engineering, UI fundamentals, and web technologies.",
+    ],
+  },
 ];
 
 export function Experience() {
@@ -51,75 +52,75 @@ export function Experience() {
       <div className="max-w-4xl mx-auto px-6 md:px-8 lg:px-12">
         <SectionHeader title="Experience" alignment="center" />
 
-        <div className="relative mt-16">
-          {/* Vertical Line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2 hidden md:block" />
-          <div className="absolute left-6 top-0 bottom-0 w-px bg-border block md:hidden" />
+        <div className="relative mt-14">
+          {/* Vertical line */}
+          <div className="absolute left-[19px] top-0 bottom-0 w-px bg-border" />
 
-          <div className="space-y-16">
+          <div className="space-y-10">
             {experiences.map((exp, index) => {
-              const isEducation = exp.type === "education";
+              const isWork = exp.type === "work";
               return (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className={`relative flex flex-col md:flex-row gap-8 md:gap-16 ${
-                    index % 2 === 0 ? "md:flex-row-reverse" : ""
-                  }`}
+                  transition={{ delay: index * 0.1 }}
+                  className="relative flex gap-8 pl-12"
                 >
-                  {/* Timeline Dot */}
-                  {isEducation ? (
-                    <div className="absolute left-6 md:left-1/2 w-8 h-8 rounded-full bg-secondary border-2 border-border -translate-x-1/2 flex items-center justify-center -mt-1 md:mt-0 z-10">
-                      <GraduationCap size={14} className="text-muted-foreground" />
-                    </div>
-                  ) : (
-                    <div className="absolute left-6 md:left-1/2 w-4 h-4 rounded-full bg-background border-4 border-primary -translate-x-1/2 mt-1.5 md:mt-0 z-10" />
-                  )}
-
-                  {/* Date for Desktop */}
-                  <div className={`hidden md:block w-1/2 pt-1 ${index % 2 === 0 ? "text-left pl-16" : "text-right pr-16"}`}>
-                    <span className={`text-sm font-semibold tracking-wider uppercase ${isEducation ? "text-muted-foreground/60" : "text-muted-foreground"}`}>
-                      {exp.period}
-                    </span>
+                  {/* Timeline node */}
+                  <div className="absolute left-0 top-1">
+                    {isWork ? (
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center border-2 ${
+                        exp.current
+                          ? "bg-foreground border-foreground text-background"
+                          : "bg-background border-border text-muted-foreground"
+                      }`}>
+                        <Briefcase size={15} />
+                      </div>
+                    ) : (
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-secondary border border-border text-muted-foreground">
+                        <GraduationCap size={15} />
+                      </div>
+                    )}
                   </div>
 
-                  {/* Content Card */}
-                  <div className="w-full md:w-1/2 pl-16 md:pl-0">
-                    <div className={`md:${index % 2 === 0 ? "pr-16" : "pl-16"} ${isEducation ? "opacity-75" : ""}`}>
-                      {/* Date for Mobile */}
-                      <span className={`md:hidden block text-sm font-semibold tracking-wider uppercase mb-2 ${isEducation ? "text-muted-foreground/60" : "text-muted-foreground"}`}>
+                  {/* Card */}
+                  <div className={`flex-1 bg-background border border-border rounded-2xl p-6 ${!isWork ? "opacity-70" : ""}`}>
+                    {/* Header */}
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+                      <div>
+                        <div className="flex items-center gap-2 flex-wrap mb-1">
+                          <h3 className="text-lg font-serif font-medium text-foreground">{exp.role}</h3>
+                          {exp.current && (
+                            <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-200/60 dark:border-emerald-800/40">
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                              Current
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-sm font-semibold text-muted-foreground">{exp.company}</p>
+                        {isWork && (
+                          <p className="text-xs text-primary font-medium mt-0.5">{exp.product}</p>
+                        )}
+                        {!isWork && (
+                          <p className="text-xs text-muted-foreground mt-0.5">{exp.product}</p>
+                        )}
+                      </div>
+                      <span className="text-xs font-semibold text-muted-foreground/70 uppercase tracking-wide whitespace-nowrap bg-secondary px-3 py-1.5 rounded-lg border border-border/50 self-start">
                         {exp.period}
                       </span>
-
-                      {isEducation ? (
-                        <>
-                          <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground/70 bg-secondary border border-border rounded-full px-3 py-1 mb-3">
-                            <GraduationCap size={11} />
-                            Education
-                          </div>
-                          <h3 className="text-xl font-serif font-medium text-foreground">{exp.role}</h3>
-                          <h4 className="text-sm font-semibold text-foreground/60 mb-1">{exp.company}</h4>
-                          <p className="text-sm text-muted-foreground/70 font-medium mb-4">{exp.product}</p>
-                        </>
-                      ) : (
-                        <>
-                          <h3 className="text-2xl font-serif font-medium text-foreground">{exp.role}</h3>
-                          <h4 className="text-base font-semibold text-foreground/70 mb-1">{exp.company}</h4>
-                          <p className="text-sm text-primary font-medium mb-6">{exp.product}</p>
-                        </>
-                      )}
-
-                      <ul className="space-y-3">
-                        {exp.bullets.map((bullet, i) => (
-                          <li key={i} className="flex gap-3 text-muted-foreground">
-                            <span className={`mt-1.5 ${isEducation ? "text-muted-foreground/40" : "text-primary"}`}>•</span>
-                            <span className="leading-relaxed">{bullet}</span>
-                          </li>
-                        ))}
-                      </ul>
                     </div>
+
+                    {/* Bullets */}
+                    <ul className="space-y-2">
+                      {exp.bullets.map((bullet, i) => (
+                        <li key={i} className="flex gap-3 text-sm text-muted-foreground leading-relaxed">
+                          <span className="mt-[0.45rem] w-1 h-1 rounded-full bg-muted-foreground/40 flex-shrink-0" />
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </motion.div>
               );
