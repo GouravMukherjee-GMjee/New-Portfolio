@@ -26,17 +26,24 @@ const coreSkills = [
   },
 ];
 
-const tools = [
-  { name: "Figma",        slug: "figma",             bg: "#1E1E1E", type: "Primary"   },
-  { name: "Adobe XD",     slug: "adobexd",           bg: "#470137", type: "Primary"   },
-  { name: "Photoshop",    slug: "adobephotoshop",    bg: "#001D34", type: "Primary"   },
-  { name: "Illustrator",  slug: "adobeillustrator",  bg: "#FF9A00", type: "Primary"   },
-  { name: "Sketch",       slug: "sketch",            bg: "#C37E00", type: "Secondary" },
-  { name: "Miro",         slug: "miro",              bg: "#050038", type: "Primary"   },
-  { name: "Balsamiq",     slug: "balsamiq",          bg: "#CC3333", type: "Secondary" },
-  { name: "Notion",       slug: "notion",            bg: "#191919", type: "Primary"   },
-  { name: "Jira",         slug: "jira",              bg: "#0052CC", type: "Primary"   },
-  { name: "Maze",         slug: "maze",              bg: "#6E41E2", type: "Secondary" },
+const tools: {
+  name: string;
+  type: string;
+  bg: string;
+  slug?: string;
+  adobeText?: string;
+  adobeColor?: string;
+}[] = [
+  { name: "Figma",        slug: "figma",    bg: "#1E1E1E", type: "Primary"   },
+  { name: "Adobe XD",     adobeText: "Xd", adobeColor: "#ffffff", bg: "#470137", type: "Primary"   },
+  { name: "Photoshop",    adobeText: "Ps", adobeColor: "#31A8FF", bg: "#001D34", type: "Primary"   },
+  { name: "Illustrator",  adobeText: "Ai", adobeColor: "#FF9A00", bg: "#1A1A1A", type: "Primary"   },
+  { name: "Sketch",       slug: "sketch",   bg: "#C37E00", type: "Secondary" },
+  { name: "Miro",         slug: "miro",     bg: "#050038", type: "Primary"   },
+  { name: "Balsamiq",     slug: "balsamiq", bg: "#CC3333", type: "Secondary" },
+  { name: "Notion",       slug: "notion",   bg: "#191919", type: "Primary"   },
+  { name: "Jira",         slug: "jira",     bg: "#0052CC", type: "Primary"   },
+  { name: "Maze",         slug: "maze",     bg: "#6E41E2", type: "Secondary" },
 ];
 
 const code = [
@@ -127,19 +134,28 @@ export function Skills() {
                   transition={{ delay: 0.15 + i * 0.04 }}
                   className="group flex flex-col items-center gap-2"
                 >
-                  {/* Brand-colored icon tile with real logo */}
+                  {/* Brand-colored icon tile */}
                   <div
                     className="w-11 h-11 rounded-xl flex items-center justify-center shadow-sm group-hover:scale-110 group-hover:shadow-md transition-all duration-200"
                     style={{ backgroundColor: tool.bg }}
                   >
-                    <img
-                      src={`https://cdn.simpleicons.org/${tool.slug}/ffffff`}
-                      alt={tool.name}
-                      width={22}
-                      height={22}
-                      className="w-[22px] h-[22px] object-contain"
-                      draggable={false}
-                    />
+                    {tool.slug ? (
+                      <img
+                        src={`https://cdn.simpleicons.org/${tool.slug}/ffffff`}
+                        alt={tool.name}
+                        width={22}
+                        height={22}
+                        className="w-[22px] h-[22px] object-contain"
+                        draggable={false}
+                      />
+                    ) : (
+                      <span
+                        className="text-[12px] font-black tracking-tight leading-none"
+                        style={{ color: tool.adobeColor, fontFamily: "'Inter', sans-serif" }}
+                      >
+                        {tool.adobeText}
+                      </span>
+                    )}
                   </div>
                   {/* Name */}
                   <span className="text-[10px] font-medium text-muted-foreground text-center leading-tight group-hover:text-foreground transition-colors">
