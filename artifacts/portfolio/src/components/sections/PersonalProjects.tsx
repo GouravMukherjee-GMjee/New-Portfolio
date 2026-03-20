@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ArrowRight } from "lucide-react";
+import { ChevronDown, CheckCircle2, ArrowRight } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
 interface Project {
@@ -8,6 +8,10 @@ interface Project {
   title: string;
   subtitle: string;
   tags: string[];
+  domain: string;
+  accentBorder: string;
+  accentBadge: string;
+  accentText: string;
   heroImage: string;
   gallery: string[];
   problem: string;
@@ -21,6 +25,10 @@ const projects: Project[] = [
     id: "school",
     title: "School Operation Manager",
     subtitle: "Centralised academic & administrative platform",
+    domain: "EdTech",
+    accentBorder: "border-l-violet-400",
+    accentBadge: "bg-violet-500/10 text-violet-700 dark:text-violet-300",
+    accentText: "text-violet-600 dark:text-violet-400",
     tags: ["EdTech", "SaaS", "Multi-Role", "Web"],
     heroImage: "images/projects/school-dashboard.png",
     gallery: [
@@ -67,6 +75,10 @@ const projects: Project[] = [
     id: "medicare",
     title: "Madicare",
     subtitle: "Multi-role healthcare ecosystem",
+    domain: "Healthcare",
+    accentBorder: "border-l-emerald-400",
+    accentBadge: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
+    accentText: "text-emerald-600 dark:text-emerald-400",
     tags: ["Healthcare", "SaaS", "Multi-Role", "Web"],
     heroImage: "images/projects/medicare-patient.png",
     gallery: [
@@ -125,6 +137,10 @@ const projects: Project[] = [
     id: "hr",
     title: "HR Portal",
     subtitle: "End-to-end HR management system",
+    domain: "HR Tech",
+    accentBorder: "border-l-amber-400",
+    accentBadge: "bg-amber-500/10 text-amber-700 dark:text-amber-300",
+    accentText: "text-amber-600 dark:text-amber-400",
     tags: ["Enterprise", "SaaS", "HR Tech", "Web"],
     heroImage: "images/projects/hr-dashboard.png",
     gallery: [
@@ -180,6 +196,10 @@ const projects: Project[] = [
     id: "jobsearch",
     title: "Job Search & Professional Networking",
     subtitle: "All-in-one jobs + networking + growth platform",
+    domain: "Product Design",
+    accentBorder: "border-l-sky-400",
+    accentBadge: "bg-sky-500/10 text-sky-700 dark:text-sky-300",
+    accentText: "text-sky-600 dark:text-sky-400",
     tags: ["Product Design", "SaaS", "B2C", "Web"],
     heroImage: "images/projects/jobsearch-dashboard.png",
     gallery: ["images/projects/jobsearch-dashboard.png"],
@@ -234,6 +254,10 @@ const projects: Project[] = [
     id: "health",
     title: "Health Tracking",
     subtitle: "Cross-device health monitoring platform (Web + Mobile)",
+    domain: "HealthTech",
+    accentBorder: "border-l-rose-400",
+    accentBadge: "bg-rose-500/10 text-rose-700 dark:text-rose-300",
+    accentText: "text-rose-600 dark:text-rose-400",
     tags: ["HealthTech", "Web + Mobile", "B2C", "Responsive"],
     heroImage: "images/projects/health-dashboard.png",
     gallery: ["images/projects/health-dashboard.png"],
@@ -287,37 +311,57 @@ const projects: Project[] = [
   },
 ];
 
-function ProjectCard({ project }: { project: Project }) {
+function SectionLabel({ label }: { label: string }) {
+  return (
+    <div className="flex items-center gap-3 mb-4">
+      <span className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">{label}</span>
+      <div className="flex-1 h-px bg-border" />
+    </div>
+  );
+}
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
 
   return (
     <motion.div
       layout
-      className="border border-border rounded-3xl overflow-hidden bg-card"
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.07 }}
+      className={`border border-border border-l-4 ${project.accentBorder} rounded-2xl overflow-hidden bg-card`}
     >
-      {/* Card Header — always visible */}
+      {/* ── Collapsed header ── */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full text-left group"
       >
-        <div className="flex items-center justify-between px-8 py-6 gap-4">
-          <div className="flex items-start gap-6 min-w-0">
-            <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center">
-              <span className="text-xl font-serif font-bold text-primary">
-                {projects.indexOf(project) + 1}
-              </span>
+        <div className="flex items-center justify-between px-6 py-5 gap-4">
+          {/* Left: index + info */}
+          <div className="flex items-start gap-5 min-w-0 flex-1">
+            {/* Index badge */}
+            <div className={`flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center text-sm font-bold font-serif ${project.accentBadge}`}>
+              {String(index + 1).padStart(2, "0")}
             </div>
-            <div className="min-w-0">
-              <h3 className="text-xl font-serif font-medium text-foreground group-hover:text-primary transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-sm text-muted-foreground mt-0.5">{project.subtitle}</p>
-              <div className="flex flex-wrap gap-2 mt-3">
+
+            {/* Text */}
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-2 flex-wrap">
+                <h3 className="text-lg font-serif font-medium text-foreground group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+                <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${project.accentBadge}`}>
+                  {project.domain}
+                </span>
+              </div>
+              <p className="text-sm text-muted-foreground mt-0.5 mb-2">{project.subtitle}</p>
+              <div className="flex flex-wrap gap-1.5">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-3 py-1 bg-secondary text-secondary-foreground text-xs font-semibold uppercase tracking-wider rounded-full border border-border/50"
+                    className="px-2.5 py-0.5 bg-secondary text-secondary-foreground text-[10px] font-semibold uppercase tracking-wider rounded-full border border-border/50"
                   >
                     {tag}
                   </span>
@@ -325,17 +369,28 @@ function ProjectCard({ project }: { project: Project }) {
               </div>
             </div>
           </div>
-          <motion.div
-            animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={{ duration: 0.3 }}
-            className="flex-shrink-0 w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-muted-foreground group-hover:text-foreground transition-colors"
-          >
-            <ChevronDown size={16} />
-          </motion.div>
+
+          {/* Right: image thumbnail + chevron */}
+          <div className="flex items-center gap-3 flex-shrink-0">
+            <div className="hidden sm:block w-24 h-16 rounded-lg overflow-hidden border border-border flex-shrink-0">
+              <img
+                src={`${import.meta.env.BASE_URL}${project.heroImage}`}
+                alt={project.title}
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
+            <motion.div
+              animate={{ rotate: isOpen ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+              className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-muted-foreground group-hover:bg-primary group-hover:text-primary-foreground transition-all"
+            >
+              <ChevronDown size={16} />
+            </motion.div>
+          </div>
         </div>
       </button>
 
-      {/* Expandable Content */}
+      {/* ── Expanded content ── */}
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
@@ -346,11 +401,12 @@ function ProjectCard({ project }: { project: Project }) {
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <div className="px-8 pb-10 border-t border-border">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 pt-8">
-                {/* Left: Images */}
-                <div className="space-y-4">
-                  <div className="rounded-2xl overflow-hidden bg-muted border border-border aspect-[4/3]">
+            <div className="px-6 pb-8 border-t border-border bg-secondary/20">
+              <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 pt-8">
+
+                {/* Left: image gallery (2 cols) */}
+                <div className="lg:col-span-2 space-y-3">
+                  <div className="rounded-xl overflow-hidden border border-border aspect-[4/3] bg-muted">
                     <img
                       src={`${import.meta.env.BASE_URL}${project.gallery[activeImage]}`}
                       alt={project.title}
@@ -358,12 +414,12 @@ function ProjectCard({ project }: { project: Project }) {
                     />
                   </div>
                   {project.gallery.length > 1 && (
-                    <div className="flex gap-2 overflow-x-auto pb-1">
+                    <div className="flex gap-2">
                       {project.gallery.map((img, i) => (
                         <button
                           key={i}
                           onClick={() => setActiveImage(i)}
-                          className={`flex-shrink-0 w-20 h-14 rounded-lg overflow-hidden border-2 transition-all ${
+                          className={`flex-1 h-12 rounded-lg overflow-hidden border-2 transition-all ${
                             activeImage === i
                               ? "border-primary opacity-100"
                               : "border-border opacity-50 hover:opacity-80"
@@ -380,28 +436,23 @@ function ProjectCard({ project }: { project: Project }) {
                   )}
                 </div>
 
-                {/* Right: Case Study Content */}
-                <div className="space-y-8">
+                {/* Right: case study (3 cols) */}
+                <div className="lg:col-span-3 space-y-6">
+
                   {/* Problem */}
                   <div>
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="w-6 h-6 rounded-full bg-red-100 dark:bg-red-950 flex items-center justify-center text-xs font-bold text-red-600 dark:text-red-400">P</span>
-                      <h4 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Problem</h4>
-                    </div>
-                    <p className="text-muted-foreground leading-relaxed text-sm">{project.problem}</p>
+                    <SectionLabel label="Problem" />
+                    <p className="text-sm text-muted-foreground leading-relaxed">{project.problem}</p>
                   </div>
 
                   {/* Research */}
                   <div>
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="w-6 h-6 rounded-full bg-amber-100 dark:bg-amber-950 flex items-center justify-center text-xs font-bold text-amber-600 dark:text-amber-400">R</span>
-                      <h4 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Research</h4>
-                    </div>
+                    <SectionLabel label="Research" />
                     <p className="text-sm text-muted-foreground mb-3">{project.research.title}</p>
                     <ul className="space-y-2">
                       {project.research.points.map((point, i) => (
                         <li key={i} className="flex gap-2 text-sm text-muted-foreground">
-                          <ArrowRight size={14} className="flex-shrink-0 mt-0.5 text-primary" />
+                          <ArrowRight size={13} className={`flex-shrink-0 mt-0.5 ${project.accentText}`} />
                           <span>{point}</span>
                         </li>
                       ))}
@@ -410,19 +461,16 @@ function ProjectCard({ project }: { project: Project }) {
 
                   {/* Solution */}
                   <div>
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-950 flex items-center justify-center text-xs font-bold text-blue-600 dark:text-blue-400">S</span>
-                      <h4 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Solution</h4>
-                    </div>
+                    <SectionLabel label="Solution" />
                     <p className="text-sm text-muted-foreground mb-4">{project.solution.intro}</p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                       {project.solution.features.map((f, i) => (
-                        <div key={i} className="bg-secondary/50 rounded-xl p-4 border border-border/50">
+                        <div key={i} className="bg-card rounded-xl p-4 border border-border">
                           <h5 className="text-xs font-bold uppercase tracking-wider text-foreground mb-2">{f.heading}</h5>
                           <ul className="space-y-1">
                             {f.points.map((p, j) => (
                               <li key={j} className="text-xs text-muted-foreground flex gap-1.5">
-                                <span className="text-primary mt-0.5">•</span>
+                                <span className={`mt-1 w-1 h-1 rounded-full flex-shrink-0 ${project.accentText} opacity-60`} style={{ background: "currentColor" }} />
                                 <span>{p}</span>
                               </li>
                             ))}
@@ -434,18 +482,12 @@ function ProjectCard({ project }: { project: Project }) {
 
                   {/* Impact */}
                   <div>
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="w-6 h-6 rounded-full bg-green-100 dark:bg-green-950 flex items-center justify-center text-xs font-bold text-green-600 dark:text-green-400">I</span>
-                      <h4 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Impact</h4>
-                    </div>
+                    <SectionLabel label="Impact" />
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {project.impact.map((item, i) => (
-                        <div
-                          key={i}
-                          className="flex gap-2 items-start bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900 rounded-xl p-3"
-                        >
-                          <span className="text-green-500 font-bold text-sm mt-0.5">↑</span>
-                          <span className="text-xs text-foreground">{item}</span>
+                        <div key={i} className="flex gap-2.5 items-start bg-card border border-border rounded-xl p-3">
+                          <CheckCircle2 size={14} className="flex-shrink-0 mt-0.5 text-emerald-500" />
+                          <span className="text-xs text-foreground leading-snug">{item}</span>
                         </div>
                       ))}
                     </div>
@@ -462,17 +504,17 @@ function ProjectCard({ project }: { project: Project }) {
 
 export function PersonalProjects() {
   return (
-    <section id="projects" className="py-24 md:py-32 bg-secondary/20 border-y border-border/50">
+    <section id="projects" className="py-24 md:py-32 bg-background border-y border-border/50">
       <div className="max-w-5xl mx-auto px-6 md:px-8 lg:px-12">
         <SectionHeader
           title="Personal Projects"
-          subtitle="Self-initiated case studies — from problem discovery to shipped solution, following a research-led design process."
+          subtitle="Self-initiated case studies — from problem discovery to shipped design, following a research-led process."
           alignment="left"
         />
 
-        <div className="mt-16 space-y-4">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+        <div className="mt-12 space-y-3">
+          {projects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
       </div>
