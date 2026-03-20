@@ -53,7 +53,7 @@ export function Hero() {
 
             {/* Name + Role */}
             <motion.p {...fadeUp(0.1)} className="text-sm font-semibold tracking-[0.2em] uppercase text-muted-foreground mb-5">
-              Gourav Mukherjee &nbsp;·&nbsp; Senior UI/UX &amp; Product Designer
+              Gourav Mukherjee &nbsp;·&nbsp; UI/UX &amp; Product Designer
             </motion.p>
 
             {/* Headline */}
