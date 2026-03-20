@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { TrendingUp, TrendingDown, CheckCircle } from "lucide-react";
+import { TrendingUp, TrendingDown, CheckCircle, Mail, ArrowRight } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
 const cases = [
@@ -66,7 +66,7 @@ export function CaseStudies() {
           subtitle="Deep dives into complex problems and the design decisions that solved them."
         />
 
-        <div className="space-y-24 md:space-y-32">
+        <div className="space-y-20 md:space-y-28">
           {cases.map((study, index) => (
             <motion.div
               key={study.id}
@@ -149,13 +149,43 @@ export function CaseStudies() {
                   })}
                 </div>
 
-                <p className="text-xs text-muted-foreground italic">
-                  Full case study available on request — reach out via the contact section.
-                </p>
+                <a
+                  href="mailto:gouravmukherjee1907@gmail.com?subject=Case Study Request"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-background hover:bg-foreground hover:text-background hover:border-foreground transition-all duration-300 text-sm font-medium text-muted-foreground group"
+                >
+                  <Mail size={14} className="group-hover:text-background" />
+                  Request full case study
+                  <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
+                </a>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Bridge to Personal Projects */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="mt-20 pt-12 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-6"
+        >
+          <div>
+            <p className="text-sm font-semibold text-muted-foreground uppercase tracking-[0.15em] mb-1">Also explore</p>
+            <p className="text-xl font-serif font-medium text-foreground">5 self-initiated case studies →</p>
+          </div>
+          <a
+            href="#projects"
+            onClick={(e) => {
+              e.preventDefault();
+              document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-foreground text-background text-sm font-semibold hover:bg-foreground/90 transition-colors group"
+          >
+            View Personal Projects
+            <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+          </a>
+        </motion.div>
       </div>
     </section>
   );

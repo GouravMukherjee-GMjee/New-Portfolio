@@ -2,11 +2,10 @@ import { Linkedin, Mail, Phone, ArrowUpRight, ArrowUp, GitMerge } from "lucide-r
 
 const navLinks = [
   { label: "About", href: "#about" },
-  { label: "Case Studies", href: "#case-studies" },
+  { label: "Case Studies", href: "#work" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
 ];
 
 const socials = [

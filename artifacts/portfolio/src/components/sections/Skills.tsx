@@ -40,7 +40,7 @@ const tools: {
   { name: "Illustrator",  adobeText: "Ai", adobeColor: "#FF9A00", bg: "#1A1A1A", type: "Primary"   },
   { name: "Sketch",       slug: "sketch",   bg: "#C37E00", type: "Secondary" },
   { name: "Miro",         slug: "miro",     bg: "#050038", type: "Primary"   },
-  { name: "Balsamiq",     slug: "balsamiq", bg: "#CC3333", type: "Secondary" },
+  { name: "Balsamiq",     adobeText: "Bq",  adobeColor: "#ffffff", bg: "#CC3333", type: "Secondary" },
   { name: "Notion",       slug: "notion",   bg: "#191919", type: "Primary"   },
   { name: "Jira",         slug: "jira",     bg: "#0052CC", type: "Primary"   },
   { name: "Maze",         slug: "maze",     bg: "#6E41E2", type: "Secondary" },
