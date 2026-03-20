@@ -44,7 +44,7 @@ export function Hero() {
             </div>
 
             {/* Name + Role */}
-            <p className="text-base font-semibold tracking-widest uppercase text-muted-foreground mb-4">Gourav Mukherjee · UI/UX & Product Designer</p>
+            <p className="text-base font-semibold tracking-widest uppercase text-muted-foreground mb-4">Gourav Mukherjee · Senior UI/UX & Product Designer</p>
 
             {/* Headline */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-medium leading-[1.05] tracking-tight mb-6">

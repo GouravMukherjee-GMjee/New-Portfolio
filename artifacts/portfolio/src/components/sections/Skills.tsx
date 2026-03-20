@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 const skillCategories = [
   {
@@ -25,8 +26,12 @@ const skillCategories = [
 
 export function Skills() {
   return (
-    <section id="skills" className="py-24 bg-background">
+    <section id="skills" className="py-24 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+        <SectionHeader
+          title="Skills & Tools"
+          subtitle="The disciplines, methods, and software I use to take a product from research to pixel-perfect delivery."
+        />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
           {skillCategories.map((category, idx) => (
             <motion.div

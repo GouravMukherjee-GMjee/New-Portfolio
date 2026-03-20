@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Button } from "@/components/ui/button";
 
 const cases = [
   {
@@ -45,7 +44,7 @@ export function CaseStudies() {
           subtitle="Deep dives into complex problems and the elegant solutions that solved them."
         />
 
-        <div className="space-y-32">
+        <div className="space-y-20 md:space-y-28">
           {cases.map((study, index) => (
             <motion.div 
               key={study.id}
@@ -105,10 +104,10 @@ export function CaseStudies() {
                   ))}
                 </div>
 
-                <Button variant="outline" className="rounded-full h-12 px-6 group">
-                  Read Full Case Study
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground border border-border rounded-full px-4 py-2">
+                  <ChevronRight size={13} />
+                  Full case study available on request
+                </div>
               </div>
             </motion.div>
           ))}
