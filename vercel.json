@@ -1,0 +1,6 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "pnpm install --no-frozen-lockfile",
+  "buildCommand": "pnpm exec --filter @workspace/portfolio exec vite build --config artifacts/portfolio/vite.config.ts",
+  "outputDirectory": "artifacts/portfolio/dist/public"
+}
