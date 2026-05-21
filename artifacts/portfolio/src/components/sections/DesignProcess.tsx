@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Users, Target, Lightbulb, PenTool, FlaskConical } from "lucide-react";
+import { portfolioEasing } from "@/lib/motion";
 
 const steps = [
   {
@@ -63,7 +64,7 @@ export function DesignProcess() {
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ delay: i * 0.1, duration: 0.5, ease: portfolioEasing }}
                   className="group flex flex-col"
                 >
                   {/* Icon node — sits on the connecting line */}

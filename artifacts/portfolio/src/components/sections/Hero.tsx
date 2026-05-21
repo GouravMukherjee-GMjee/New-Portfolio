@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Download, Briefcase, Clock, FolderOpen, LayoutGrid } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { portfolioEasing } from "@/lib/motion";
 
 const stats = [
   { icon: <Clock size={18} />, value: "5+", label: "Years Experience" },
@@ -14,7 +15,7 @@ const specializations = ["SaaS Platforms", "Enterprise UX", "FSM", "EdTech"];
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] },
+  transition: { duration: 0.7, delay, ease: portfolioEasing },
 });
 
 export function Hero() {
@@ -70,7 +71,7 @@ export function Hero() {
                 <motion.span
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
-                  transition={{ delay: 0.9, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ delay: 0.9, duration: 0.6, ease: portfolioEasing }}
                   style={{ transformOrigin: "left" }}
                   className="absolute -bottom-1 left-0 right-0 h-[3px] bg-foreground/20 rounded-full"
                 />
@@ -125,7 +126,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.15, ease: portfolioEasing }}
             className="lg:col-span-5 hidden lg:flex flex-col gap-4"
           >
             <div className="grid grid-cols-2 gap-3">
@@ -134,7 +135,7 @@ export function Hero() {
                   key={stat.label}
                   initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.25 + i * 0.09, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ delay: 0.25 + i * 0.09, duration: 0.5, ease: portfolioEasing }}
                   className="group relative bg-card/80 backdrop-blur-sm border border-border rounded-2xl p-5 flex flex-col gap-4 overflow-hidden hover:border-border/80 hover:shadow-sm transition-all duration-300"
                 >
                   {/* Thin accent top border */}
@@ -180,7 +181,7 @@ export function Hero() {
           <motion.div
             className="w-[3px] h-[6px] rounded-full bg-foreground/50"
             animate={{ y: [0, 10, 0], opacity: [1, 0, 1] }}
-            transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+            transition={{ repeat: Infinity, duration: 1.6, ease: portfolioEasing }}
           />
         </div>
         {/* Label */}

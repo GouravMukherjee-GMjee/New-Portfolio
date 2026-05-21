@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Layers, Coins, Code2, Puzzle } from "lucide-react";
+import { portfolioEasing } from "@/lib/motion";
 
 const capabilities = [
   {
@@ -112,7 +113,7 @@ export function DesignSystem() {
             initial={{ opacity: 0, scale: 0.97, y: 16 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            transition={{ duration: 0.6, ease: portfolioEasing, delay: 0.1 }}
             className="lg:col-span-7 relative"
           >
             {/* Glow */}

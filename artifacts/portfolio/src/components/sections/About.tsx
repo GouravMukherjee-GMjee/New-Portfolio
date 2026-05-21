@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Search, Layers, Lightbulb } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { portfolioEasing } from "@/lib/motion";
 
 const traits = ["Research-Led", "Systems Thinker", "User Advocate", "Accessibility Focused"];
 
@@ -37,7 +38,7 @@ export function About() {
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.6, ease: portfolioEasing }}
               style={{ transformOrigin: "left" }}
               className="w-10 h-[3px] bg-foreground/30 rounded-full mb-6"
             />

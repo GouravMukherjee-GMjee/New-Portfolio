@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, CheckCircle2, ArrowRight } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { portfolioEasing } from "@/lib/motion";
 
 interface Project {
   id: string;
@@ -398,7 +399,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.4, ease: portfolioEasing }}
             className="overflow-hidden"
           >
             <div className="px-6 pb-8 border-t border-border bg-secondary/20">
