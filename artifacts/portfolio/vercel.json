@@ -1,0 +1,10 @@
+{
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build"
+    }
+  ],
+  "buildCommand": "pnpm exec vite build --config vite.config.ts",
+  "outputDirectory": "dist/public"
+}
